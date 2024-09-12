@@ -1,0 +1,177 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* #jokeBox{
+    display: none;
+    position: absolute;
+    right: 350px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+} */
+
+.jokeBox {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Hidden from layout */
+    transition: opacity 300ms ease, visibility 0.5s ease;
+}
+
+/* When the jokeBox is visible */
+.jokeBox.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible;
+}
+
+#jokeBox p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+.jokeTransition{
+    transition: all 500ms ease-in-out;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+}
+
+header button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+header button:hover {
+    background-color: #0056b3;
+}
+
+/* Align buttons on the right */
+header div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Main content styling */
+main {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+main div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* User button styling */
+.userBtn {
+    background-color: #28a745;
+}
+
+.userBtn:hover {
+    background-color: #218838;
+}
+
+/* Problems list styling */
+#problemsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#problemsList li {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#problemsList li span {
+    word-wrap: break-word;
+}
+
+#problemsList li button {
+    background-color: #dc3545;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#problemsList li button:hover {
+    background-color: #c82333;
+}

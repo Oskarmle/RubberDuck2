@@ -9,12 +9,21 @@
 </head>
 <body>
     <header>
+        <a href="./user.html">
+            <button id="userBtn" class="userBtn">Create user</button>
+        </a>
         <audio src="rubberDuckSound.mp3" id="duckSound"></audio>
         <img src="Rubber-Duck.png" alt="" id="duck">
+        <button id="jokeBtn" class="jokeBtn">Give me an answer</button>
+        <div class="jokeBox" id="jokeBox">
+            <!-- <p id="jokePara">a random joke a random joke a random joke a random joke</p> -->
+        </div>
     </header>
     <main>
-        <input type="text" id="newProblem" placeholder="new problem">
-        <button id="addButton">New problem</button>
+        <div>
+            <input type="text" id="newProblem" placeholder="new problem">
+            <button id="addButton">New problem</button>
+        </div>
         <container>
             <ul id="problemsList">
                 
