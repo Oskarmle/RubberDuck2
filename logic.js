@@ -5,18 +5,67 @@ function elementId(element) {
 
 const button = elementId("box");
 
-function playSound() {
-    const duckSound = elementId("duckSound");
-    duckSound.play();
+// function playSound() {
+//     const duckSound = elementId("duckSound");
+//     // duckSound.play();
+// }
+
+// Post data to mongoDB
+async function createProblem() {
+    const message = document.getElementById("newProblem").value;
+    console.log(message);
+
+    const url = "http://127.0.0.1:3002/messages";
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message }),
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
-// setTimeOut(function stopSound(){
-//    duckSound.pause();
-//    duckSound.currentTime = 0;
-// }, 1000)
+elementId("addButton").addEventListener("click", async function (e) {
+    e.preventDefault();
+    await createProblem();
+});
 
-/////////////////////7 Creating a new li element inside the ul
-// function createProblem() {
+// GET request when window loads
+async function getProblems() {
+    const url = "http://127.0.0.1:3002/messages";
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        // Check Content-Type header to determine how to handle the response
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+            const json = await response.json(); // Parse as JSON
+            console.log(json);
+        } else {
+            const text = await response.text(); // Parse as plain text
+            console.log('Non-JSON response:', text);
+        }
+    } catch (error) {
+        console.error('Error during fetching problems:', error);
+    }
+}
+
 //     const submittedDate = new Date().toLocaleString("da-DK");
 
 //     const newProblemText = elementId("newProblem").value;
@@ -27,43 +76,7 @@ function playSound() {
 //     elementId("problemsList").appendChild(newLi);
 // }
 
-// Post data to mongoDB
-async function createProblem() {
-    const submittedDate = new Date().toLocaleString("da-DK");
-    const newProblemText = elementId("newProblem").value;
-    let duck = { date: submittedDate, problem: newProblemText };
-    // console.log(duck);
-    // const response = await fetch("http://127.0.0.1:3001/", {
-    //     method: "POST",
-    //     body: JSON.stringify(duck),
-    // });    
-    const url = "http://127.0.0.1:3001/"
-    try{
-        const response = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(duck)
-        })
-        if (!response.ok){
-            throw new Error(`Response status: ${response.status}`)
-    }
-
-    }
-}
-
-
-elementId("addButton").addEventListener("click", function (e) {
-    e.preventDefault();
-    createProblem();
-});
-
-// GET request when window loads
-window.onload(async ( => {
-    getDuck();
-}))
-
-async function getDuck() {
-    
-}
+// async function getDuck() {}
 
 const duckImg = elementId("duck");
 
@@ -75,6 +88,10 @@ duckImg.addEventListener("mouseover", function () {
 duckImg.addEventListener("mouseout", function () {
     const duckSound = document.getElementById("duckSound");
     // duckSound.pause();
+});
+
+window.addEventListener("load", async () => {
+    await getProblems();
 });
 
 // const username = prompt("TELL ME YOUR NAME!!!!")
